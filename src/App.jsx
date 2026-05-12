@@ -8,7 +8,7 @@ function App() {
   return (
     <AuthProvider>
       <CartProvider>
-        <BrowserRouter>
+        <BrowserRouter basename="/Course-Project-WebApp">
           <AppRoutes />
         </BrowserRouter>
       </CartProvider>
