@@ -1,0 +1,505 @@
+// Змінні UI
+$primary: #4F46E5;
+$primary-hover: #4338CA;
+$secondary: #10B981;
+$secondary-hover: #059669;
+$danger: #EF4444;
+$danger-hover: #DC2626;
+$warning: #F59E0B;
+$warning-hover: #D97706;
+$bg-color: #F3F4F6;
+$card-bg: #FFFFFF;
+$text-main: #1F2937;
+$text-muted: #6B7280;
+$border-radius: 12px;
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$transition: all 0.3s ease;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: $bg-color;
+  color: $text-main;
+  line-height: 1.5;
+}
+
+input, select {
+  padding: 12px 16px;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  background-color: #fff;
+  transition: $transition;
+  color: $text-main;
+
+  &:focus {
+    border-color: $primary;
+    box-shadow: 0 0 0 3px rgba($primary, 0.2);
+  }
+}
+
+button {
+  cursor: pointer;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: $transition;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+
+// Навігація
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $card-bg;
+  padding: 1rem 2rem;
+  box-shadow: $shadow-md;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  .navbar-logo a {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: $primary;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+  }
+
+  .navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    a {
+      color: $text-muted;
+      text-decoration: none;
+      font-weight: 500;
+      transition: $transition;
+      
+      &:hover { color: $primary; }
+    }
+  }
+
+  .user-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-left: 15px;
+    border-left: 1px solid #E5E7EB;
+
+    .user-email {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: $text-main;
+    }
+
+    .logout-btn {
+      background-color: #FEE2E2;
+      color: $danger;
+      padding: 8px 16px;
+      &:hover {
+        background-color: $danger;
+        color: white;
+      }
+    }
+  }
+}
+
+// Каталог
+.catalog-container {
+  padding: 40px 20px;
+  max-width: 1280px;
+  margin: 0 auto;
+
+  h2 {
+    margin-bottom: 25px;
+    font-size: 2rem;
+  }
+
+  .controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    background: $card-bg;
+    padding: 20px;
+    border-radius: $border-radius;
+    box-shadow: $shadow-sm;
+
+    .search-wrapper {
+      flex: 1;
+      min-width: 250px;
+      input { width: 100%; }
+    }
+
+    select {
+      min-width: 200px;
+      cursor: pointer;
+    }
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+  }
+}
+
+// Картка товару
+.product-card {
+  background: $card-bg;
+  border-radius: $border-radius;
+  box-shadow: $shadow-md;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: $transition;
+  border: 1px solid #F3F4F6;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $shadow-lg;
+  }
+
+  .image-wrapper {
+    width: 100%;
+    height: 200px;
+    background-color: #F9FAFB;
+    border-bottom: 1px solid #F3F4F6;
+  }
+
+  .product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .product-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $text-muted;
+    font-size: 0.9rem;
+  }
+
+  .product-info {
+    padding: 20px;
+    flex: 1;
+
+    h3 { 
+      font-size: 1.25rem;
+      margin-bottom: 8px; 
+      color: $text-main;
+      font-weight: 700;
+    }
+    
+    .price { 
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: $secondary;
+      margin-bottom: 15px; 
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+
+      .tag-badge {
+        background: #EEF2FF;
+        color: $primary;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+
+        &.empty {
+          background: #F3F4F6;
+          color: $text-muted;
+        }
+      }
+    }
+  }
+
+  .card-actions {
+    padding: 20px;
+    padding-top: 0;
+    display: flex;
+    gap: 10px;
+    
+    button, .quantity-controls {
+      flex: 1;
+      padding: 10px;
+      font-size: 0.9rem;
+    }
+
+    .btn-cart {
+      background-color: $primary;
+      color: white;
+      &:hover { background-color: $primary-hover; }
+    }
+
+    .btn-bookmark {
+      background-color: #F3F4F6;
+      color: $text-main;
+      border: 1px solid #E5E7EB;
+      
+      &:hover { background-color: #E5E7EB; }
+
+      &.active {
+        background-color: #FEE2E2;
+        color: $danger;
+        border-color: #FECACA;
+        &:hover { background-color: #FECACA; }
+      }
+    }
+  }
+}
+
+// Контролер кількості (+ / -)
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #F3F4F6;
+  border-radius: 8px;
+  padding: 4px;
+  
+  &.in-card { padding: 4px; }
+
+  button {
+    background: white;
+    color: $text-main;
+    border: 1px solid #D1D5DB;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border-radius: 6px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover { background: #E5E7EB; }
+  }
+
+  span {
+    font-weight: 600;
+    min-width: 20px;
+    text-align: center;
+  }
+}
+
+// Сторінка Кошика
+.cart-page-container {
+  .cart-layout {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  .cart-items-list {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .cart-item-card {
+    display: flex;
+    align-items: center;
+    background: $card-bg;
+    padding: 15px 20px;
+    border-radius: $border-radius;
+    box-shadow: $shadow-sm;
+    border: 1px solid #E5E7EB;
+    gap: 20px;
+
+    .cart-item-image {
+      width: 70px;
+      height: 70px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #F9FAFB;
+      flex-shrink: 0;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        color: $text-muted;
+      }
+    }
+
+    .cart-item-details {
+      flex: 1;
+      h3 { font-size: 1.1rem; margin-bottom: 4px; }
+      .price-per-unit { color: $text-muted; font-size: 0.9rem; }
+    }
+
+    .quantity-controls { width: 110px; }
+
+    .cart-item-subtotal {
+      width: 100px;
+      text-align: right;
+      font-size: 1.1rem;
+      color: $secondary;
+    }
+
+    .btn-remove {
+      background: transparent;
+      color: $text-muted;
+      font-size: 1.2rem;
+      padding: 5px;
+      &:hover { color: $danger; background: #FEE2E2; }
+    }
+  }
+
+  .cart-summary {
+    flex: 1;
+    background: $card-bg;
+    padding: 25px;
+    border-radius: $border-radius;
+    box-shadow: $shadow-md;
+    border: 1px solid #E5E7EB;
+    position: sticky;
+    top: 90px;
+
+    h3 { margin-bottom: 20px; font-size: 1.3rem; border-bottom: 1px solid #E5E7EB; padding-bottom: 10px; }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      color: $text-muted;
+
+      &.total {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: $text-main;
+        border-top: 1px solid #E5E7EB;
+        padding-top: 15px;
+        margin-top: 10px;
+      }
+    }
+
+    .btn-checkout {
+      width: 100%;
+      background: $secondary;
+      font-size: 1.1rem;
+      padding: 12px;
+      margin-top: 10px;
+      &:hover { background: $secondary-hover; }
+    }
+  }
+}
+
+// Адмін панель
+.admin-dashboard-container {
+  .admin-tabs {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #E5E7EB;
+    padding-bottom: 15px;
+
+    .tab-btn {
+      background: transparent;
+      color: $text-muted;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      &:hover { background: #F3F4F6; color: $text-main; }
+      &.active { background: $primary; color: white; }
+    }
+  }
+}
+
+.admin-products-container {
+  .product-form {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+    background: $card-bg;
+    padding: 25px;
+    border-radius: $border-radius;
+    box-shadow: $shadow-md;
+    flex-wrap: wrap;
+    align-items: center;
+
+    input[type="text"], input[type="number"], input[type="file"] {
+      flex: 1;
+      min-width: 200px;
+    }
+    input[type="file"] { cursor: pointer; padding: 8px; border: 1px dashed #D1D5DB; }
+  }
+
+  .admin-products-list { display: flex; flex-direction: column; gap: 15px; }
+
+  .admin-product-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: $card-bg;
+    padding: 15px 25px;
+    border-radius: $border-radius;
+    box-shadow: $shadow-sm;
+    border: 1px solid #F3F4F6;
+
+    &:hover { box-shadow: $shadow-md; }
+
+    .item-actions {
+      display: flex;
+      gap: 10px;
+      button:last-child { background: #FEE2E2; color: $danger; &:hover { background: $danger; color: white; } }
+    }
+  }
+}
+
+// Авторизація
+.auth-container {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 40px;
+  background: $card-bg;
+  border-radius: $border-radius;
+  box-shadow: $shadow-lg;
+
+  h2 { margin-bottom: 25px; text-align: center; font-size: 1.8rem; }
+  .error { background: #FEE2E2; color: $danger; padding: 10px; border-radius: 6px; margin-bottom: 20px; text-align: center; }
+  form { display: flex; flex-direction: column; gap: 20px; button { background: $primary; color: white; padding: 12px; font-size: 1rem; margin-top: 10px; &:hover { background: $primary-hover; } } }
+}
